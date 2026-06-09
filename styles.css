@@ -520,6 +520,97 @@ img { display: block; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+/* ── HISTORIA 3-COL GRID ── */
+.historia-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 1fr 0.8fr 1fr;
+  align-items: start;
+}
+
+/* ── HISTORIA PHOTO ── */
+.historia-photo {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: stretch;
+}
+
+.historia-photo-frame {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  min-height: 280px;
+  background: var(--surface-solid);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+.historia-photo-frame:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--line-brand);
+  border-color: var(--line-brand);
+}
+
+.historia-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  min-height: 280px;
+  filter: saturate(0.85) brightness(0.95);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.historia-photo-frame:hover .historia-photo-img {
+  filter: saturate(1) brightness(1);
+  transform: scale(1.03);
+}
+
+.historia-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(9,14,14,0.75) 0%, rgba(9,14,14,0.1) 45%, transparent 100%),
+    linear-gradient(135deg, rgba(45,200,139,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.historia-photo-frame:hover .historia-photo-overlay {
+  opacity: 0.6;
+}
+
+.historia-photo-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding: 0.75rem 0.2rem 0;
+  border-top: none;
+}
+
+.historia-photo-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.historia-photo-year {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
 /* ── CARDS ── */
 .card {
   background: var(--surface);
@@ -953,6 +1044,24 @@ img { display: block; }
     grid-template-columns: 1fr;
   }
 
+  .historia-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .historia-photo {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .historia-photo-frame {
+    min-height: 240px;
+  }
+
+  .historia-photo-img {
+    min-height: 240px;
+  }
+
   .museum-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -984,6 +1093,23 @@ img { display: block; }
 
   .entity-grid {
     grid-template-columns: 1fr;
+  }
+
+  .historia-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .historia-photo {
+    order: unset;
+    grid-column: unset;
+  }
+
+  .historia-photo-frame {
+    min-height: 220px;
+  }
+
+  .historia-photo-img {
+    min-height: 220px;
   }
 
   .footer-inner {
